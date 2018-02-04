@@ -37,7 +37,7 @@ namespace RosSharp
         }
 
         private void Update()
-        {
+        {   
             if (doUpdate)
             {
                 Vector3 anchor = transform.TransformPoint(_hingeJoint.anchor);
@@ -51,6 +51,7 @@ namespace RosSharp
         {
             newAngle = angle;
             doUpdate = true;
+
         }
     }
 }

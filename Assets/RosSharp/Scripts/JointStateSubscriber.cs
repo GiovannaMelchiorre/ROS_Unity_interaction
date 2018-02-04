@@ -15,6 +15,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RosSharp.RosBridgeClient
@@ -29,7 +30,6 @@ namespace RosSharp.RosBridgeClient
 
         public float[] JointPositions; // deg
         public float[] JointVelocities; // deg/s
-
         private int numberOfJoints;
 
         public void Start()
@@ -47,9 +47,9 @@ namespace RosSharp.RosBridgeClient
             SensorJointStates sensorJointStates = (SensorJointStates)message;
             JointPositions = rad2Deg(sensorJointStates.position);
             JointVelocities = rad2Deg(sensorJointStates.velocity);
-
             foreach (JointStateManager jointStateManager in jointStateManagers)
                 jointStateManager.UpdateJointState(JointPositions[jointStateManager.JointStateId]);
+            
         }
 
         private static float[] rad2Deg(float[] values)

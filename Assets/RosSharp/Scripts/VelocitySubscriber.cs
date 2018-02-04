@@ -29,7 +29,6 @@ namespace RosSharp.RosBridgeClient
 
 		private RosSocket rosSocket;
 		private VelocityTransformManager velocityTransformManager;
-
 		public int UpdateTime = 1;
 
 		// Use this for initialization
@@ -37,13 +36,14 @@ namespace RosSharp.RosBridgeClient
 		{
 			rosSocket = transform.GetComponent<RosConnector>().RosSocket;
 			rosSocket.Subscribe(topic, "geometry_msgs/Twist", updateVelocity, UpdateTime);
-
-			velocityTransformManager = UrdfModel.GetComponent<VelocityTransformManager>();		
+			velocityTransformManager = UrdfModel.GetComponent<VelocityTransformManager>();	
+			 	
 		}
 
 		private void updateVelocity(Message message)
 		{
 			GeometryTwist geometryTwist = (GeometryTwist)message;
+			
 			// In ROS conventions, the coordinate system is right-handed with 
 			// x pointing forward
 			// y pointing to the left
